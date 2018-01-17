@@ -5,12 +5,16 @@
  */
 const webpack = require('webpack');
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: [
-    'webpack-hot-middleware/client?path=http://localhost:4444/__webpack_hmr&reload=true',
-    path.resolve(__dirname, './demo/src/index.tsx')
+    'react-hot-loader/patch',
+    'webpack-dev-server/client?/',
+    'webpack/hot/dev-server',
+    path.resolve(__dirname, './src/index.tsx')
   ],
+
   output: {
     path: path.resolve(__dirname),
     filename: 'main.js',
@@ -82,6 +86,8 @@ module.exports = {
 
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.ProvidePlugin({})
+    new HtmlWebpackPlugin({
+      template: './index.html'
+    })
   ]
 };
