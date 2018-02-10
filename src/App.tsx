@@ -43,4 +43,19 @@ class App extends React.Component<any, IStateTypes> {
   }
 }
 
-export default withRouter(App);
+export default withRouter<any>(App);
+
+interface IFunc {
+  (): void;
+  <T>(x: T): T;
+}
+
+const func: IFunc = function<T>(x?: T) {
+  if (typeof x === 'number') {
+    return 1;
+  }
+
+  if (typeof x === 'string') {
+    return '1';
+  }
+};
