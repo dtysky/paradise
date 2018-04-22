@@ -1,6 +1,6 @@
 利用约束参数随机通过点击生成一颗颗抽象化的树。  
 这个效果是我在去年（2017）的the best of codepen发现的，觉得是很有意思，非常具有艺术感，于是学了下原理并在这里实现了一下。  
-[code](http://github.com/dtysky/paradise/tree/master/src/collection/TreesGenerator2D), [demo](http://paradise.dtysky.moe/trees-generator2d)
+[code](http://github.com/dtysky/paradise/tree/master/src/collection/TreesGenerator2D), [demo](http://paradise.dtysky.moe/effect/trees-generator2d)
 
 ## 原理
 

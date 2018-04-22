@@ -37,7 +37,7 @@ config.sort((item, item2) => new Date(item.date) < new Date(item2.date) ? 1 : -1
     cover,
     info,
     date: new Date(date),
-    author: author || {name: '瞬光', email: 'shunguang.dty@antfin.com'},
+    author: author || {name: 'dtysky', email: 'dtysky@outlook.com'},
     Component,
     Controller
   };

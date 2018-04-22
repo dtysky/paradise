@@ -5,7 +5,7 @@
   "main": "src/index.tsx",
   "scripts": {
     "dev": "node server.dev.js",
-    "build": "webpack -p --config webpack.prod.config.js"
+    "build": "webpack -p --config webpack.prod.config.js && node generateDirsByRoutes.js"
   },
   "repository": {
     "type": "git",
