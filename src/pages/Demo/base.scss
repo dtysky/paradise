@@ -1,0 +1,53 @@
+/**
+ * @File   : base.scss
+ * @Author : dtysky (dtysky@outlook.com)
+ * @Date   : 2018-4-18 19:07:50
+ * @Link: dtysky.moe
+ */
+@import '../../config.scss';
+
+.pd-demo {
+  position: relative;
+
+  &-actions {
+    position: fixed;
+    z-index: 10000;
+    top: 192px;
+    left: 0;
+    padding: 12px;
+    background: rgba($theme-color, .4);
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+  }
+
+  &-action {
+    display: flex;
+    align-items: center;
+    color: black;
+    padding: 12px;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+
+    &:hover {
+      color: #666;
+    }
+
+    >p {
+      margin: 0 0 0 12px;
+      font-size: 18px;
+    }
+
+    >i {
+      font-size: 22px;
+      display: inline-block;
+    }
+  }
+
+  &-main {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+  }
+}

@@ -1,0 +1,61 @@
+/**
+ * @File   : sidebar.scss
+ * @Author : dtysky (dtysky@outlook.com)
+ * @Date   : 2018-4-8 17:56:49
+ * @Link: dtysky.moe
+ */
+.pd-sidebar {
+  position: fixed;
+  left: -640px;
+  top: 0;
+  z-index: 10001;
+  width: 40%;
+  height: 100vh;
+  min-width: 320px;
+  max-width: 640px;
+  background: rgba(#fff, 1);
+  box-shadow: inherit;
+  padding: 12px;
+  transition: .4s all ease-in-out;
+  overflow: auto;
+
+  &-mask {
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+    background: rgba(#aaa, .1);
+
+    &-close {
+      display: none;
+    }
+  }
+
+  &-open {
+    left: 0;
+  }
+
+  &-close-button {
+    font-size: 32px;
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    cursor: pointer;
+  }
+
+  &-title {
+    width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 4px;
+    font-size: 24px;
+  }
+
+  &-main {
+    position: relative;
+    margin-top: 24px;
+  }
+}

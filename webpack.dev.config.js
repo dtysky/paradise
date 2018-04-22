@@ -1,19 +1,29 @@
+#!/usr/bin/env node
 /**
- * Author: dtysky(dtysky<dtysky@outlook.com>)
- * Github: https://github.com/dtysky
- * Created: 2017/6/11
+ * @File   : webpack.dev.js
+ * @Author : dtysky (dtysky@outlook.com)
+ * @Date   : 2018-4-4 16:50:35
+ * @Link: dtysky.moe
  */
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const phaserModule = path.join(__dirname, './node_modules/phaser-ce/');
+const phaser = path.join(phaserModule, 'build/custom/phaser-split.js');
+const pixi = path.join(phaserModule, 'build/custom/pixi.js');
+const p2 = path.join(phaserModule, 'build/custom/p2.js');
+
 module.exports = {
-  entry: [
-    'react-hot-loader/patch',
-    'webpack-dev-server/client?/',
-    'webpack/hot/dev-server',
-    path.resolve(__dirname, './src/index.tsx')
-  ],
+  entry: {
+    main: [
+      'react-hot-loader/patch',
+      'webpack-dev-server/client?/',
+      'webpack/hot/dev-server',
+      path.resolve(__dirname, './src/index.tsx')
+    ],
+    phaser: ['pixi', 'p2', 'phaser-ce']
+  },
 
   output: {
     path: path.resolve(__dirname),
@@ -22,8 +32,8 @@ module.exports = {
   },
 
   resolve: {
-    // Add '.ts' and '.tsx' as resolvable extensions.
-    extensions: [".ts", ".tsx", ".js"]
+    extensions: [".ts", ".tsx", ".js", ".md"],
+    alias: {'phaser-ce': phaser, p2, pixi}
   },
 
   externals: {
@@ -33,7 +43,18 @@ module.exports = {
   
   module: {
     rules: [
-      // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
+      {
+        test: /pixi\.js/,
+        use: ['expose-loader?PIXI']
+      },
+      {
+        test: /phaser-split\.js$/,
+        use: ['expose-loader?Phaser']
+      },
+      {
+        test: /p2\.js/,
+        use: ['expose-loader?p2']
+      },
       {
         enforce: 'pre',
         test: /\.tsx?$/,
@@ -71,6 +92,14 @@ module.exports = {
         ]
       },
       {
+        test: /\.md$/,
+        use: [
+          {
+            loader: 'raw-loader'
+          }
+        ]
+      },
+      {
         test: /\.(png|jpg|gif|svg|mp4)$/,
         use: {
           loader: 'url-loader',
@@ -80,6 +109,12 @@ module.exports = {
 //             name: 'static/images/[name].[ext]'
           }
         }
+      },
+      {
+        test: /\.json$/,
+        use: {
+          loader: 'json-loader'
+        }
       }
     ]
   },
@@ -88,6 +123,10 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       template: './index.html'
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'phaser',
+      filename: 'phaser.js'
     })
   ]
 };

@@ -1,11 +1,35 @@
+#!/usr/bin/env node
 /**
- * Author: ひまわり(dtysky<dtysky@outlook.com>)
- * Github: https://github.com/dtysky
- * Created: 16/12/29
+ * @File   : server.dev.js
+ * @Author : dtysky (dtysky@outlook.com)
+ * @Date   : 2018-4-4 16:49:53
+ * @Link: dtysky.moe
  */
 const path = require('path');
+const fs = require('fs');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
+
+const pathTable = {};
+
+function camelcase2Dash(str) {
+  return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+}
+
+function getDirectories(dp) {
+  return fs.readdirSync(dp).filter(file => {
+      return fs.statSync(path.join(dp, file)).isDirectory() && file.substr(0, 1) !== ".";
+  });
+}
+
+getDirectories(path.resolve(__dirname, './src/collection'))
+  .forEach(dir => {
+    pathTable[camelcase2Dash(dir)] = dir;
+  });
+
+function dash2Camelcase(str) {
+  return pathTable[str];
+}
 
 const config = require('./webpack.dev.config');
 config.plugins.push(
@@ -19,11 +43,19 @@ config.plugins.push(
 
 const express = require('express');
 const app = new express();
-const port = 4444;
+const port = 8888;
 const proxyPort = port + 1;
 
-app.use('/static',
-  express.static(path.resolve(__dirname, 'static'))
+app.use((req, res, next) => {
+  const regexRes = /^(\/effect\/)([a-zA-Z0-9\-]+)(\/?.+)/.exec(req.url);
+  if (regexRes && dash2Camelcase(regexRes[2])) {
+    req.url = `${regexRes[1]}${dash2Camelcase(regexRes[2])}${regexRes[3]}`;
+  }
+  next();
+});
+
+app.use('/effect',
+  express.static(path.resolve(__dirname, './src/collection'))
 );
 
 const devServer = () => {
@@ -41,10 +73,16 @@ const devServer = () => {
     https: false,
     overlay: true,
     historyApiFallback: true,
-    proxy: [{
-      context: ['/static'],
-      target: `http://localhost:${proxyPort}`
-    }]
+    proxy: {
+      '/effect': {
+        target: `http://localhost:${proxyPort}`,
+        bypass: (req, res, proxyOptions) => {
+          if (!/^\/effect\/([a-zA-Z0-9\-]+)(\/.+)/.test(req.path)) {
+            return '/index.html';
+          }
+        }
+      }
+    }
   });
 
   server.listen(port, 'localhost', (error) => {

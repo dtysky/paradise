@@ -222,5 +222,5 @@
     "no-switch-case-fall-through": false,
     "no-unused-imports": true
   },
-  "rulesDirectory": "./"
+  "rulesDirectory": "./node_modules/tslint-microsoft-contrib"
 }

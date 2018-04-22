@@ -1,0 +1,34 @@
+/**
+ * @File   : base.scss
+ * @Author : dtysky (dtysky@outlook.com)
+ * @Link   : dtysky.moe
+ * @Date   : 2018-4-22 16:25:20
+ */
+.pd-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  background: black;
+  padding: 64px 5%;
+
+  color: #ddd;
+
+  &-msg {
+    font-size: 18px;
+    line-height: 2;
+  }
+
+  &-info {
+    font-size: 18px;
+    line-height: 2;
+
+    >a {
+      display: block;
+      color: inherit;
+
+      >i {
+        margin-right: 4px;
+      }
+    }
+  }
+}

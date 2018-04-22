@@ -1,21 +1,22 @@
+#!/usr/bin/env node
 /**
- * Copyright(c) dtysky<dtysky@outlook.com>
- * Created: 16/12/18
- * Description:
+ * @File   : tslintConfig.js
+ * @Author : dtysky (dtysky@outlook.com)
+ * @Date   : 2018-4-4 16:54:04
+ * @Link: dtysky.moe
  */
-
 const fs = require('fs');
 const path = require('path');
 
 module.exports = {
   configuration: {
-    rulesDirectory: './tslint-contrib',
+    rulesDirectory: path.resolve(__dirname, 'node_modules/tslint-microsoft-contrib'),
     configuration: JSON.parse(fs.readFileSync(path.resolve(__dirname, 'tslint.json')))
   },
 
   // enables type checked rules like 'for-in-array'
   // uses tsconfig.json from current working directory
-  typeCheck: false,
+  typeCheck: true,
 
   // can specify a custom config file relative to current directory
   // 'tslint-custom.json'

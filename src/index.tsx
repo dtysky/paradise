@@ -1,21 +1,22 @@
 /**
- * Copyright(c) dtysky<dtysky@outlook.com>
- * Created: 12 Jan 2018
- * Description:
+ * @File   : index.ts
+ * @Author : dtysky (dtysky@outlook.com)
+ * @Date   : 2018-4-4 16:56:32
+ * @Link: dtysky.moe
  */
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import {AppContainer} from 'react-hot-loader';
+import {BrowserRouter} from 'react-router-dom';
+// import {AppContainer} from 'react-hot-loader';
 
+import App from './App';
 import './base.scss';
-
-import Router from './Router';
 
 const render = () => {
   ReactDOM.render(
-    <AppContainer>
-      <Router />
-    </AppContainer>,
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>,
     document.getElementById('paradise')
   );
 };

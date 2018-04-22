@@ -1,0 +1,33 @@
+/**
+ * @File   : base.scss
+ * @Author : dtysky (dtysky@outlook.com)
+ * @Date   : 2018-4-10 11:58:51
+ * @Link: dtysky.moe
+ */
+.pd-trees-generator-2d {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  overflow: hidden;
+  margin: 0;
+
+  >canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+
+  >p {
+    position: absolute;
+    font-size: 36px;
+    color: rgba(#aaa, .7);
+    width: 100%;
+    text-align: center;
+    bottom: 128px;
+    pointer-events: none;
+  }
+}
+ 

@@ -4,3 +4,4 @@
 .vscode
 node_modules
 *.log
+**/Adobe After Effects 自动保存/**

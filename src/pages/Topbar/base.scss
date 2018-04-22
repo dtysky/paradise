@@ -1,0 +1,57 @@
+/**
+ * @File   : base.scss
+ * @Author : dtysky (dtysky@outlook.com)
+ * @Date   : 2018-4-18 19:07:55
+ * @Link: dtysky.moe
+ */
+@import '../../config.scss';
+
+.pd-topbar {
+  position: fixed;
+  z-index: 1;
+  background-color: #fff;
+  width: 100%;
+  top: 0;
+  height: $top-height;
+  box-shadow: 0 2px 24px #aaaaaa;
+  padding: 12px;
+
+  &-logo {
+    display: block;
+    text-align: center;
+    margin-bottom: 12px;
+    color: black;
+
+    &:hover {
+      color: black;
+    }
+
+    >h1 {
+      margin: 0;
+      font-size: 36px;
+    }
+
+    >p {
+      margin: 0;
+      margin-left: 24px;
+    }
+  }
+
+  &-search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin-left: 10%;
+
+    .ant-select-selection {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    .ant-btn {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+}
