@@ -4,5 +4,31 @@
  * @Date   : 2018-4-18 19:41:28
  * @Link: dtysky.moe
  */
+$fg-color: #fff;
 $theme-color: rgb(102, 195, 211);
-$top-height: 160px;
+$top-height: 64px;
+$sidebar-bg-color: rgba(#f5f5f5, 1);
+$hr-color: rgba(255, 255, 255, .3);
+$text-active-color: #000;
+$text-normal-color: #000;
+
+$wide-width: 1600px;
+$pad-width: 920px;
+$mobile-width: 520px;
+
+@mixin custom-scroll($width: 10px, $track-radius: 10px, $thumb-radius: 10px) {
+  &::-webkit-scrollbar {
+    width: $width;
+    height: $width;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba($text-active-color, .1);
+    border-radius: $track-radius;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $text-normal-color;
+    border-radius: $thumb-radius;
+  }
+}

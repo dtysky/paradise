@@ -4,12 +4,16 @@
  * @Date   : 2018-4-13 13:33:05
  * @Link: dtysky.moe
  */
+import {TEffect} from '../../types';
+import {IControlOptions} from './types';
 import Component from './Component';
 import Controller from './Controller';
+
 const info = require('./readme.md');
 
-export default {
+const effect: TEffect<IControlOptions> = {
   name: 'LottieHelloWorld',
+  path: 'lottie-hello-world',
   desc: 'A simple lottie demo.',
   tags: ['Lottie', 'SVG'],
   cover: require('./cover.jpg'),
@@ -18,3 +22,5 @@ export default {
   Component,
   Controller
 };
+
+export default effect;

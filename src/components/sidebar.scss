@@ -4,45 +4,57 @@
  * @Date   : 2018-4-8 17:56:49
  * @Link: dtysky.moe
  */
+ @import '../config.scss';
+
 .pd-sidebar {
   position: fixed;
-  left: -640px;
-  top: 0;
-  z-index: 10001;
-  width: 40%;
-  height: 100vh;
-  min-width: 320px;
-  max-width: 640px;
-  background: rgba(#fff, 1);
-  box-shadow: inherit;
-  padding: 12px;
-  transition: .4s all ease-in-out;
-  overflow: auto;
+  top: $top-height + 12px;
+  bottom: 12px;
+  z-index: 101;
+  width: 44%;
+  min-width: 340px;
+  max-width: 480px;
+  padding: 12px 4px 12px 16px;
+  background: $sidebar-bg-color;
+  transition: .3s all ease-in-out;
+  overflow: hidden;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  box-shadow: 0 1px 4px #000;
 
-  &-mask {
-    position: fixed;
-    z-index: 10000;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    cursor: pointer;
-    background: rgba(#aaa, .1);
-
-    &-close {
-      display: none;
-    }
+  &-left {
+    left: -480px;
   }
 
-  &-open {
-    left: 0;
+  &-left#{&}-open {
+    left: 16px;
+  }
+
+  &-right {
+    right: -480px;
+  }
+
+  &-right#{&}-open {
+    right: 16px;
+  }
+
+  @media (max-width: 321px) {
+    min-width: 300px;
+    padding: 8px;
   }
 
   &-close-button {
-    font-size: 32px;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 50%;
+    padding: 2px;
+    background: $hr-color;
     position: absolute;
     right: 12px;
     top: 12px;
+    color: $text-active-color;
     cursor: pointer;
   }
 
@@ -51,11 +63,61 @@
     overflow: hidden;
     text-overflow: ellipsis;
     margin-top: 4px;
-    font-size: 24px;
+    font-size: 16px;
+    color: $text-active-color;
   }
 
   &-main {
     position: relative;
-    margin-top: 24px;
+    padding-right: 8px;
+    width: 100%;
+    height: 95%;
+    overflow: auto;
+
+    @include custom-scroll();
+
+    .markdown {
+      p, h1, h2, h3, h4, h5, h6, a, li, pre, code {
+        color: $text-normal-color;
+      }
+
+      p, a {
+        font-size: 14px;
+        line-height: 20px;
+      }
+
+      a {
+        text-decoration: underline;
+      }
+
+      pre {
+        @include custom-scroll(6px);
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        margin-top: 1em;
+        margin-bottom: 8px;
+        font-weight: bold;
+        border-bottom: none;
+      }
+
+      h1 {
+        border-bottom: none;
+        font-size: 1.4em;
+      }
+
+      h2 {
+        font-size: 1.2em;
+        padding-bottom: 0;
+      }
+
+      h3 {
+
+      }
+
+      h4, h5, h6 {
+        font-size: 1.1em;
+      }
+    }
   }
 }

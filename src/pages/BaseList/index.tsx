@@ -13,16 +13,17 @@ import Icon from 'antd/es/icon';
 import 'antd/es/icon/style/css';
 
 import {stringAsHueToHSLToRGB} from '../../utils';
-import {TRouteItem} from '../../routes/types';
+import {TEffect} from '../../types';
 
 import './base.scss';
 
 interface IPropTypes extends RouteComponentProps<{}> {
   keys: string[];
-  table: {[key: string]: TRouteItem[]};
+  table: {[key: string]: TEffect<any>[]};
   key2name?: (key: string) => string;
   withSelectedKeys?: boolean;
   defaultSelectedKeys?: string[];
+  themeColor?: string;
 }
 
 interface IStateTypes {
@@ -101,7 +102,7 @@ class BaseList extends React.Component<IPropTypes, IStateTypes> {
 
   private renderCategory(category: string, index: number) {
     const name = this.props.key2name ? this.props.key2name(category) : category;
-    const themeColor = stringAsHueToHSLToRGB(name, 50, 60);
+    const themeColor = this.props.themeColor || stringAsHueToHSLToRGB(name, 50, 60);
 
     return (
       <div
@@ -129,7 +130,7 @@ class BaseList extends React.Component<IPropTypes, IStateTypes> {
     );
   }
 
-  private renderItem(themeColor: string, item: TRouteItem) {
+  private renderItem(themeColor: string, item: TEffect<any>) {
     return (
       <div
         key={item.path}
@@ -156,7 +157,7 @@ class BaseList extends React.Component<IPropTypes, IStateTypes> {
           </a>
           <p className={cx('pd-list-category-item-date')}>
             <Icon type={'calendar'} />
-            {item.date.toDateString()}
+            {item.date}
           </p>
           <p className={cx('pd-list-category-item-tags')}>
             <Icon type={'tags-o'} />

@@ -33,10 +33,6 @@
   "homepage": "https://github.com/dtysky/paradise#readme",
   "devDependencies": {
     "@types/node": "^6.0.52",
-    "@types/react": "^16.0.31",
-    "@types/react-dom": "^16.0.3",
-    "@types/react-router": "^4.0.20",
-    "@types/react-router-dom": "^4.2.3",
     "autoprefixer": "^7.2.4",
     "awesome-typescript-loader": "^3.0.0-beta.17",
     "clean-webpack-plugin": "^0.1.19",
@@ -60,7 +56,6 @@
     "sass-loader": "^6.0.6",
     "source-map-loader": "^0.1.5",
     "style-loader": "^0.19.1",
-    "three": "^0.89.0",
     "tslint": "^4.1.1",
     "tslint-loader": "^3.5.3",
     "tslint-microsoft-contrib": "^4.0.0",
@@ -70,10 +65,13 @@
     "webpack-dev-server": "^2.10.1"
   },
   "dependencies": {
+    "@types/react": "^16.0.31",
+    "@types/react-dom": "^16.0.3",
+    "@types/react-router": "^4.0.20",
+    "@types/react-router-dom": "^4.2.3",
     "@types/gsap": "^1.19.2",
     "@types/qs": "^6.5.1",
     "@types/query-string": "^5.1.0",
-    "@types/react": "^16.3.5",
     "@types/three": "^0.89.12",
     "antd": "^3.4.0",
     "babylonjs": "^3.2.0-beta.5",

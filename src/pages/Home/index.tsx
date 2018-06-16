@@ -5,7 +5,6 @@
  * @Link: dtysky.moe
  */
 import * as React from 'react';
-import {Link} from 'react-router-dom';
 import * as cx from 'classnames';
 
 import {effects} from '../../routes';
@@ -20,6 +19,7 @@ const Home = (props: {}) => (
       table={{
         Effects: effects.slice()
       }}
+      themeColor={'rgb(102, 195, 211)'}
     />
   </div>
 );

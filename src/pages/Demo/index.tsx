@@ -11,15 +11,16 @@ import Icon from 'antd/es/icon';
 import 'antd/es/icon/style/css';
 
 import {Markdown, SideBar} from '../../components';
-import {TRouteItem} from '../../routes/types';
+import {TEffect} from '../../types';
 
 import './base.scss';
 
-interface IPropTypes extends TRouteItem {}
+interface IPropTypes extends TEffect<any> {}
 
 interface IStateTypes {
   openInfo: boolean;
   openController: boolean;
+  openTools: boolean;
   options: any;
 }
 
@@ -27,16 +28,41 @@ export default class View extends React.PureComponent<IPropTypes, IStateTypes> {
   public state: IStateTypes = {
     openInfo: false,
     openController: false,
+    openTools: false,
     options: {}
   };
+
+  private openSidebar = (pair: {[name: string]: boolean}) => {
+    this.setState({
+      openInfo: false,
+      openTools: false,
+      ...pair
+    });
+  }
 
   public render() {
     return (
       <div className={cx('pd-view')}>
         {this.renderMain()}
-        {this.renderActions()}
-        {this.renderController()}
+        {this.renderTopbar()}
         {this.renderInfo()}
+        {this.renderTools()}
+        {this.renderController()}
+      </div>
+    );
+  }
+
+  private renderTopbar() {
+    return (
+      <div className={cx('pd-demo-topbar')}>
+        <a
+          href={this.props.code}
+          className={cx('pd-demo-title')}
+        >
+           <h1>{this.props.name}</h1>
+          <Icon type={'link'} />
+        </a>
+        {this.renderActions()}
       </div>
     );
   }
@@ -50,14 +76,21 @@ export default class View extends React.PureComponent<IPropTypes, IStateTypes> {
       <div className={cx('pd-demo-actions')}>
         <div
           className={cx('pd-demo-action')}
-          onClick={() => this.setState({openInfo: true})}
+          onClick={() => this.openSidebar({openInfo: !this.state.openInfo})}
         >
           <Icon type={'info-circle-o'} />
           <p>Details</p>
         </div>
         <div
           className={cx('pd-demo-action')}
-          onClick={() => this.setState({openController: true})}
+          onClick={() => this.openSidebar({openTools: !this.state.openTools})}
+        >
+          <Icon type={'mobile'} />
+          <p>Tools</p>
+        </div>
+        <div
+          className={cx('pd-demo-action')}
+          onClick={() => this.setState({openController: !this.state.openController})}
         >
           <Icon type={'setting'} />
           <p>Setting</p>
@@ -85,6 +118,32 @@ export default class View extends React.PureComponent<IPropTypes, IStateTypes> {
     );
   }
 
+  private renderInfo() {
+    return (
+      <SideBar
+        title={'Details'}
+        icon={'file-text'}
+        open={this.state.openInfo}
+        onClose={() => this.setState({openInfo: false})}
+      >
+        <Markdown markdown={this.props.info} />
+      </SideBar>
+    );
+  }
+
+  private renderTools() {
+    return (
+      <SideBar
+        title={'Tools'}
+        icon={'mobile'}
+        open={this.state.openTools}
+        onClose={() => this.setState({openTools: false})}
+      >
+        <Markdown markdown={this.props.info} />
+      </SideBar>
+    );
+  }
+
   private renderController() {
     const {
       Controller
@@ -93,22 +152,12 @@ export default class View extends React.PureComponent<IPropTypes, IStateTypes> {
     return (
       <SideBar
         title={'Setting'}
+        icon={'setting'}
+        direction={'right'}
         open={this.state.openController}
         onClose={() => this.setState({openController: false})}
       >
         <Controller handleChangeOptions={options => this.setState({options})} />
-      </SideBar>
-    );
-  }
-
-  private renderInfo() {
-    return (
-      <SideBar
-        title={this.props.name}
-        open={this.state.openInfo}
-        onClose={() => this.setState({openInfo: false})}
-      >
-        <Markdown markdown={this.props.info} />
       </SideBar>
     );
   }

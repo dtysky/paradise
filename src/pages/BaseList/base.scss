@@ -4,134 +4,144 @@
  * @Date   : 2018-4-18 19:29:16
  * @Link: dtysky.moe
  */
- $theme-color: rgb(102, 195, 211);
+@import '../../config.scss';
 
- .pd-list {
-   &-keys.ant-checkbox-group {
-     padding: 36px;
-     max-height: 120px;
-     overflow: auto;
+.pd-list {
+  &-keys.ant-checkbox-group {
+    padding: 36px;
+    max-height: 120px;
+    overflow: auto;
 
-     .ant-checkbox-wrapper {
-      font-size: 20px;
-     }
-   }
+    .ant-checkbox-wrapper {
+    font-size: 20px;
+    }
+  }
 
-   &-category {
-     margin-top: 18px;
-     
-     &-title {
-       display: inline-block;
-       font-size: 32px;
-       border-bottom: 3px solid $theme-color;
-       color: $theme-color;
-       padding: 24px;
-       margin: 0;
-       margin-left: 3%;
-     }
- 
-     &-list {
-       padding: 24px 0;
-     }
- 
-     &-item {
-       position: relative;
-       display: inline-block;
-       background: white;
-       width: 27%;
-       margin: 24px 3% 0 3%;
-       box-sizing: border-box;
-       box-shadow: 0 2px 12px $theme-color;
- 
-       @media (max-width: 800px) {
-         width: 44%;
-       }
- 
-       @media (max-width: 420px) {
-         width: 44%;
-       }
- 
-       @media (min-width: 1600px) {
-         width: 19%;
-       }
- 
-       &-cover {
-         display: block;
-         padding: 50% * 3 / 4 50%;
-         background-size: 100% auto;
-         background-position: center;
-         transition: all .3s ease-in-out;
- 
-         &:hover {
-           background-size: 120% auto;
-         }
-       }
- 
-       &-info {
-         padding: 14px 12px;
-         color: black;
-       }
- 
-       &-title {
-         font-size: 17px;
-         margin: 6px 0 0 0;
-         word-break: break-all;
- 
-         @media (max-width: 420px) {
-           font-size: 15px;
-           margin: 2px 0 0 0;
-         }
-       }
+  &-category {
+    margin-top: 18px;
+    
+    &-title {
+      display: inline-block;
+      font-size: 32px;
+      border-bottom: 3px solid $theme-color;
+      color: $theme-color;
+      padding: 24px;
+      margin: 0;
+      margin-left: 1%;
 
-       &-desc {
-        margin-top: 4px;
-        margin-bottom: 12px;
-       }
- 
-       &-author, &-date, &-tags {
-         font-size: 14px;
-         margin: 0;
-         line-height: 1.8;
-         word-break: break-all;
-         color: #444;
- 
-         @media (max-width: 420px) {
-           font-size: 13px;
-           line-height: 1.4;
-         }
+      @media (max-width: $mobile-width) {
+        margin-left: 5%;
+      }
+    }
 
-         i {
-           margin-right: 8px;
-         }
-       }
+    &-list {
+      padding: 24px 0;
+    }
 
-       &-tags, &-info-bottom {
-         display: flex;
-         align-items: center;
-       }
+    &-item {
+      position: relative;
+      display: inline-block;
+      background: white;
+      margin: 24px 1% 0 1%;
+      box-sizing: border-box;
+      box-shadow: 0 2px 12px $theme-color;
 
-       &-info-bottom {
-         margin-top: 12px;
-       }
+      @media (min-width: 1401px) {
+      width: 23%;
+    }
 
-       &-tag {
-         display: block;
-         margin-right: 4px;
-         color: inherit;
+      @media (min-width: $pad-width) and (max-width: $wide-width) {
+        width: 31.3%;
+      }
 
-         text-decoration: underline;
-       }
+      @media (max-width: $pad-width) {
+        width: 48%;
+      }
 
-       &-like, &-cost, &-prod {
-         margin-right: 12px;
-         margin-bottom: 0;
-         color: inherit;
+      @media (max-width: $mobile-width) {
+        margin: 24px 5% 0 5%;
+        width: 90%;
+      }
 
-         >i {
-           margin-right: 2px;
-         }
-       }
-     }
-   }
- }
- 
+      &-cover {
+        display: block;
+        padding: 50% * 3 / 4 50%;
+        background-size: 100% auto;
+        background-position: center;
+        transition: all .3s ease-in-out;
+
+        &:hover {
+          background-size: 120% auto;
+        }
+      }
+
+      &-info {
+        padding: 14px 12px;
+        color: black;
+      }
+
+      &-title {
+        font-size: 17px;
+        margin: 6px 0 0 0;
+        word-break: break-all;
+
+        @media (max-width: 480px) {
+          font-size: 15px;
+          margin: 2px 0 0 0;
+        }
+      }
+
+      &-desc {
+      margin-top: 4px;
+      margin-bottom: 12px;
+      height: 42px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      }
+
+      &-author, &-date, &-tags {
+        font-size: 14px;
+        margin: 0;
+        line-height: 1.8;
+        word-break: break-all;
+        color: #444;
+
+        @media (max-width: 480px) {
+          font-size: 13px;
+          line-height: 1.4;
+        }
+
+        i {
+          margin-right: 8px;
+        }
+      }
+
+      &-tags, &-info-bottom {
+        display: flex;
+        align-items: center;
+      }
+
+      &-info-bottom {
+        margin-top: 12px;
+      }
+
+      &-tag {
+        display: block;
+        margin-right: 4px;
+        color: inherit;
+
+        text-decoration: underline;
+      }
+
+      &-like, &-cost, &-prod {
+        margin-right: 12px;
+        margin-bottom: 0;
+        color: inherit;
+
+        >i {
+          margin-right: 2px;
+        }
+      }
+    }
+  }
+}

@@ -9,10 +9,10 @@ import * as cx from 'classnames';
 import {
   Scene, WebGLRenderer, PCFSoftShadowMap, SphereGeometry,
   Texture, MeshBasicMaterial, Mesh, PerspectiveCamera,
-  AmbientLight, DirectionalLight, Vector3, DoubleSide
+  DirectionalLight, Vector3, DoubleSide
 } from 'three';
 import * as THREE from 'three';
-;import * as OrbitControlsOrigin from 'three-orbit-controls';
+import * as OrbitControlsOrigin from 'three-orbit-controls';
 const OrbitControls = OrbitControlsOrigin(THREE);
 
 import {IControlOptions} from './types';
