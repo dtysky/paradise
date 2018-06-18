@@ -26,8 +26,8 @@ module.exports = {
 
   output: {
     path: outPath,
-    filename: '[name].[hash].js',
-    chunkFilename: '[name].chunk.[hash].js',
+    filename: 'assets/[name].[hash].js',
+    chunkFilename: 'assets/[name].chunk.[hash].js',
     publicPath: '/'
   },
 
@@ -106,9 +106,8 @@ module.exports = {
         use: {
           loader: 'url-loader',
           query: {
-            limit: 15000,
-//             emitFile: false
-//             name: 'static/images/[name].[ext]'
+            limit: 1000,
+            name: 'assets/[path][name].[ext]'
           }
         }
       },
@@ -133,7 +132,7 @@ module.exports = {
       {root: outPath}
     ),
     new ExtractTextPlugin({
-      filename: 'main.[hash].css',
+      filename: 'assets/main.[hash].css',
       allChunks: true
     }),
     new webpack.DefinePlugin({
