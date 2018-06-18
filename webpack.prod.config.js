@@ -21,14 +21,13 @@ const p2 = path.join(phaserModule, 'build/custom/p2.js');
 module.exports = {
   entry: {
     main: path.resolve(__dirname, './src/index.tsx'),
-    'react-packet': ['react', 'react-dom', 'react-router'],
-    three: ['three'],
-    phaser: ['pixi', 'p2', 'phaser-ce']
+    'react-packet': ['react', 'react-dom', 'react-router']
   },
 
   output: {
     path: outPath,
-    filename: '[name].js',
+    filename: '[name].[hash].js',
+    chunkFilename: '[name].chunk.[hash].js',
     publicPath: '/'
   },
 
@@ -95,7 +94,7 @@ module.exports = {
         }),
       },
       {
-        test: /\.md$/,
+        test: /\.(md|glsl)$/,
         use: [
           {
             loader: 'raw-loader'
@@ -134,7 +133,7 @@ module.exports = {
       {root: outPath}
     ),
     new ExtractTextPlugin({
-      filename: 'main.css',
+      filename: 'main.[hash].css',
       allChunks: true
     }),
     new webpack.DefinePlugin({
@@ -143,18 +142,18 @@ module.exports = {
       }
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      name: ['react-packet', 'three', 'phaser'],
+      name: ['react-packet'],
       minChunks: 2
     }),
     new HtmlWebpackPlugin({
       template: './index.html'
     }),
-    new CompressionWebpackPlugin({
-      asset: "[path]",
-      algorithm: "gzip",
-      test: /\.js$|\.css$/,
-      threshold: 10240,
-      minRatio: 0.8
-    })
+    // new CompressionWebpackPlugin({
+    //   asset: "[path]",
+    //   algorithm: "gzip",
+    //   test: /\.js$|\.css$/,
+    //   threshold: 10240,
+    //   minRatio: 0.8
+    // })
   ]
 };

@@ -8,12 +8,14 @@ import RainbowStarWave from './RainbowStarWave';
 import TreesGenerator2D from './TreesGenerator2D';
 import DigitalClock3D from './DigitalClock3D';
 import LottieHelloWorld from './LottieHelloWorld';
+import PixelDisplacement2D from './PixelDisplacement2D';
 
 const config = [
   RainbowStarWave,
   TreesGenerator2D,
   DigitalClock3D,
-  LottieHelloWorld
+  LottieHelloWorld,
+  PixelDisplacement2D
 ];
 
 export default config;

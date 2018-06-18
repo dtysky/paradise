@@ -4,19 +4,27 @@
  * @Date   : 2018-6-16 14:46:15
  * @Description:
  */
+export type TEffectComponent<IControlOptions> = React.ComponentClass<IControlOptions> | ((props: IControlOptions) => JSX.Element);
+export type TEffectController<IControlOptions> = React.ComponentClass<{handleChangeOptions: (options: IControlOptions) => void;}>;
+export type TAsyncModule<IControlOptions> = () => Promise<{
+  default: {
+    info: string;
+    Component: TEffectComponent<IControlOptions>;
+    Controller: TEffectController<IControlOptions>;
+  };
+}>;
+
 export type TEffect<IControlOptions> = {
-  name: string,
-  path: string,
+  name: string;
+  path: string;
   code?: string;
-  desc: string,
-  tags: string[],
-  cover: string,
-  info: string,
-  date: string,
+  desc: string;
+  tags: string[];
+  cover: string;
+  date: string;
   author?: {
-    name: string,
-    email: string
+    name: string;
+    email: string;
   },
-  Component: React.ComponentClass<IControlOptions> | ((props: IControlOptions) => JSX.Element);
-  Controller: React.ComponentClass<{handleChangeOptions: (options: IControlOptions) => void}>;
+  asyncModule: TAsyncModule<IControlOptions>;
 };

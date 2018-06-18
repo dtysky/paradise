@@ -1,7 +1,7 @@
-# Created by .ignore support plugin (hsz.mobi)
 .idea
 .DS_Store
 .vscode
 node_modules
 *.log
 **/Adobe After Effects 自动保存/**
+dist

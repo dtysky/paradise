@@ -9,8 +9,6 @@ import {Link} from 'react-router-dom';
 import * as cx from 'classnames';
 import Icon from 'antd/es/icon';
 import 'antd/es/icon/style/css';
-import Button from 'antd/es/button';
-import 'antd/es/button/style/css';
 import Select from 'antd/es/select';
 import 'antd/es/select/style/css';
 
@@ -47,7 +45,7 @@ export default class Topbar extends React.PureComponent<{}, IStateTypes> {
             style={{width: '100%'}}
             onChange={this.handleSearchSelect}
             value={this.state.searchParams}
-            placeholder={'input tag or platform'}
+            placeholder={'input tags'}
           >
             {
               dataSource.map(({value, label}) => (

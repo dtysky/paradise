@@ -5,7 +5,8 @@
   "main": "src/index.tsx",
   "scripts": {
     "dev": "node server.dev.js",
-    "build": "webpack -p --config webpack.prod.config.js && node generateDirsByRoutes.js"
+    "build": "webpack -p --config webpack.prod.config.js",
+    "create": "node ./createNewEffect/index.js"
   },
   "repository": {
     "type": "git",
@@ -47,6 +48,7 @@
     "postcss-loader": "^2.0.10",
     "postcss-smart-import": "^0.7.6",
     "precss": "^2.0.0",
+    "pureimage": "^0.1.6",
     "raw-loader": "^0.5.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -65,23 +67,28 @@
     "webpack-dev-server": "^2.10.1"
   },
   "dependencies": {
+    "@types/gsap": "^1.19.2",
+    "@types/qs": "^6.5.1",
+    "@types/query-string": "^5.1.0",
     "@types/react": "^16.0.31",
     "@types/react-dom": "^16.0.3",
     "@types/react-router": "^4.0.20",
     "@types/react-router-dom": "^4.2.3",
-    "@types/gsap": "^1.19.2",
-    "@types/qs": "^6.5.1",
-    "@types/query-string": "^5.1.0",
     "@types/three": "^0.89.12",
     "antd": "^3.4.0",
     "babylonjs": "^3.2.0-beta.5",
     "color-space": "^1.16.0",
+    "eruda": "^1.4.4",
+    "eruda-timing": "^1.1.1",
+    "es6-object-assign": "^1.1.0",
     "fs-extra": "^5.0.0",
-    "gsap": "^1.20.4",
+    "gsap": "1.20.4",
     "lottie-web": "^5.1.10",
     "marked": "^0.3.19",
     "phaser-ce": "^2.10.3",
+    "pixi": "^0.3.1",
     "qs": "^6.5.1",
+    "stats.js": "^0.17.0",
     "string-hash": "^1.1.3",
     "three": "^0.89.0",
     "three-orbit-controls": "^82.1.0"

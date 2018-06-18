@@ -1,0 +1,22 @@
+/**
+ * @File   : base.scss
+ * @Author : dtysky (dtysky@outlook.com)
+ * @Date   : Sat Jun 16 2018
+ * @Link: dtysky.moe
+ */
+$star-quantity: 4;
+$dot-quantity: 50;
+$speed: 1s;
+
+.pd-pixel-displacement-2d {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #0BF;
+  overflow: hidden;
+  margin: 0;
+
+  >canvas {
+    position: relative;
+  }
+}

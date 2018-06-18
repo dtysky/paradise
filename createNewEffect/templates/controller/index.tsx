@@ -1,12 +1,12 @@
 /**
  * @File   : Controller.tsx
- * @Author : {AUTHOR}
+ * @Author : dtysky (dtysky@outlook.com)
  * @Date   : {TIME}
  * @Link: dtysky.moe
  */
 import * as React from 'react';
 
-import {IControlOptions} from './types';
+import {IControlOptions} from '../types';
 
 interface IPropTypes {
   handleChangeOptions: (options: IControlOptions) => void;

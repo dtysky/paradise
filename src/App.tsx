@@ -6,7 +6,6 @@
  */
 import * as React from 'react';
 import {Route, Switch, withRouter, RouteComponentProps} from 'react-router-dom';
-import * as cx from 'classnames';
 
 import {effects} from './routes';
 import Topbar from './pages/Topbar';

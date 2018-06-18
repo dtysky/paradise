@@ -6,10 +6,6 @@
  */
 import {TEffect} from '../../types';
 import {IControlOptions} from './types';
-import Component from './Component';
-import Controller from './Controller';
-
-const info = require('./readme.md');
 
 const effect: TEffect<IControlOptions> = {
   name: 'TreesGenerator2D',
@@ -17,10 +13,8 @@ const effect: TEffect<IControlOptions> = {
   desc: 'Plat trees with canvas.',
   tags: ['Canvas', 'Tree'],
   cover: require('./cover.jpg'),
-  info,
   date: '2018/04/10',
-  Component,
-  Controller
+  asyncModule: () => import('./asyncModule')
 };
 
 export default effect;

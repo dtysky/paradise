@@ -12,12 +12,14 @@ import 'antd/es/icon/style/css';
 
 import {Markdown, SideBar} from '../../components';
 import {TEffect} from '../../types';
+import Tools from './Tools';
 
 import './base.scss';
 
 interface IPropTypes extends TEffect<any> {}
 
 interface IStateTypes {
+  init: boolean;
   openInfo: boolean;
   openController: boolean;
   openTools: boolean;
@@ -26,11 +28,24 @@ interface IStateTypes {
 
 export default class View extends React.PureComponent<IPropTypes, IStateTypes> {
   public state: IStateTypes = {
+    init: false,
     openInfo: false,
     openController: false,
     openTools: false,
     options: {}
   };
+  private Component: React.ComponentClass<any> | ((props: any) => JSX.Element);
+  private Controller: React.ComponentClass<{handleChangeOptions: (options: any) => void}>;
+  private info: string;
+
+  public async componentDidMount() {
+    const asyncModule = (await this.props.asyncModule()).default;
+    this.Component = asyncModule.Component;
+    this.Controller = asyncModule.Controller;
+    this.info = asyncModule.info;
+
+    this.setState({init: true});
+  }
 
   private openSidebar = (pair: {[name: string]: boolean}) => {
     this.setState({
@@ -41,6 +56,10 @@ export default class View extends React.PureComponent<IPropTypes, IStateTypes> {
   }
 
   public render() {
+    if (!this.state.init) {
+      return null;
+    }
+
     return (
       <div className={cx('pd-view')}>
         {this.renderMain()}
@@ -109,7 +128,7 @@ export default class View extends React.PureComponent<IPropTypes, IStateTypes> {
   private renderMain() {
     const {
       Component
-    } = this.props;
+    } = this;
 
     return (
       <div className={cx('pd-demo-main')}>
@@ -126,7 +145,7 @@ export default class View extends React.PureComponent<IPropTypes, IStateTypes> {
         open={this.state.openInfo}
         onClose={() => this.setState({openInfo: false})}
       >
-        <Markdown markdown={this.props.info} />
+        <Markdown markdown={this.info} />
       </SideBar>
     );
   }
@@ -139,7 +158,7 @@ export default class View extends React.PureComponent<IPropTypes, IStateTypes> {
         open={this.state.openTools}
         onClose={() => this.setState({openTools: false})}
       >
-        <Markdown markdown={this.props.info} />
+        <Tools />
       </SideBar>
     );
   }
@@ -147,7 +166,7 @@ export default class View extends React.PureComponent<IPropTypes, IStateTypes> {
   private renderController() {
     const {
       Controller
-    } = this.props;
+    } = this;
 
     return (
       <SideBar

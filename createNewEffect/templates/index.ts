@@ -1,23 +1,24 @@
 /**
  * @File   : index.ts
- * @Author : {AUTHOR}
+ * @Author : dtysky (dtysky@outlook.com)
  * @Date   : {DATE}
  * @Link: dtysky.moe
  */
-import Component from './Component';
-import Controller from './Controller';
+import {TEffect} from '../../types';
+import {IControlOptions} from './types';
+
 const info = require('./readme.md');
 
-export default {
+const effect: TEffect<IControlOptions> = {
   name: '{NAME}',
+  path: '{ROUTE}',
+  desc: '{DESC}',
   tags: [{TAGS}],
   cover: require('./cover.jpg'),
   info,
-  author: {
-    name: {AUTHOR_NAME},
-    email: {AUTHOR_EMAIL}
-  },
   date: '{DATE}',
-  Component,
-  Controller
+  getComponent: () => import('./component'),
+  getController: () => import('./controller')
 };
+
+export default effect;

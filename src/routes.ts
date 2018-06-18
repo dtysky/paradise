@@ -17,13 +17,11 @@ config.sort((item, item2) => new Date(item.date) < new Date(item2.date) ? 1 : -1
     name,
     path,
     desc,
-    info,
     tags,
     cover,
     date,
     author,
-    Component,
-    Controller
+    asyncModule
   } = effect;
 
   const item = {
@@ -33,11 +31,9 @@ config.sort((item, item2) => new Date(item.date) < new Date(item2.date) ? 1 : -1
     color: `https://github.com/dtysky/paradise/tree/master/src/collection/${name}`,
     tags,
     cover,
-    info,
     date: (new Date(date)).toDateString(),
     author: author || {name: 'dtysky', email: 'dtysky@outlook.com'},
-    Component,
-    Controller
+    asyncModule
   };
 
   // shared reference !

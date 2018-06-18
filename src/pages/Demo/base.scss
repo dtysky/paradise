@@ -100,4 +100,31 @@
     height: 100vh;
     overflow: auto;
   }
+
+  &-tools {
+    position: relative;
+    width: 100%;
+    height: 96%;
+    margin-top: 2%;
+  
+    .stats {
+      position: relative;
+      height: 30%;
+  
+      &-content {
+        position: relative;
+        height: 100%;
+      }
+    }
+  
+    .eruda-container {
+      position: relative;
+      margin-top: 12px;
+      height: calc(96% - 84px);
+    }
+  
+    .eruda-entry-btn {
+      display: none;
+    }
+  }
 }

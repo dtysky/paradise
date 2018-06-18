@@ -7,7 +7,9 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {BrowserRouter} from 'react-router-dom';
-// import {AppContainer} from 'react-hot-loader';
+import * as es6ObjectAssign from 'es6-object-assign';
+
+es6ObjectAssign.polyfill();
 
 import App from './App';
 import './base.scss';
