@@ -148,12 +148,12 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './index.html'
     }),
-    // new CompressionWebpackPlugin({
-    //   asset: "[path]",
-    //   algorithm: "gzip",
-    //   test: /\.js$|\.css$/,
-    //   threshold: 10240,
-    //   minRatio: 0.8
-    // })
+    new CompressionWebpackPlugin({
+      asset: "[path]",
+      algorithm: "gzip",
+      test: /\.js$|\.css$/,
+      threshold: 10240,
+      minRatio: 0.8
+    })
   ]
 };
