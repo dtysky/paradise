@@ -107,6 +107,7 @@ module.exports = {
           loader: 'url-loader',
           query: {
             limit: 1000,
+            context: path.resolve(__dirname, 'src/collection'),
             name: 'assets/[path][name].[ext]'
           }
         }
