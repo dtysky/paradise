@@ -1,6 +1,6 @@
 /**
  * @File   : types.ts
- * @Author : {AUTHOR}
+ * @Author : dtysky (dtysky@outlook.com)
  * @Date   : {DATE}
  * @Link: dtysky.moe
  */

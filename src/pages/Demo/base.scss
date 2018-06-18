@@ -9,21 +9,63 @@
 .pd-demo {
   position: relative;
 
-  &-actions {
+  &-topbar {
     position: fixed;
-    z-index: 10000;
-    top: 192px;
+    top: 0;
     left: 0;
-    padding: 12px;
-    background: rgba($theme-color, .4);
-    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    height: $top-height;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    color: $text-active-color;
+    background-color: $fg-color;
+    box-shadow: 0 2px 24px #aaaaaa;
+    transition: all .3s ease-in-out;
+    overflow: hidden;
+    cursor: pointer; 
+  }
+
+  &-title {
+    display: flex;
+    align-items: center;
+    color: inherit;
+    width: 20%;
+
+    @media (max-width: $mobile-width) {
+      width: 50%;
+    }
+
+    &:hover, &:active {
+      color: inherit;
+    }
+
+    >h1 {
+      font-size: 16px;
+      color: inherit;
+      white-space: nowrap;
+      margin-bottom: 0;
+      margin-right: 6px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    >i {
+      font-size: 18px;
+    }
+  }
+
+  &-actions {
+    display: flex;
+    align-items: center;
   }
 
   &-action {
     display: flex;
     align-items: center;
     color: black;
-    padding: 12px;
+    padding: 4px;
     cursor: pointer;
     transition: all .2s ease-in-out;
 
@@ -32,13 +74,21 @@
     }
 
     >p {
-      margin: 0 0 0 12px;
-      font-size: 18px;
+      margin: 0 0 0 4px;
+      font-size: 14px;
+
+      @media (max-width: $mobile-width) {
+        display: none;
+      }
     }
 
     >i {
-      font-size: 22px;
+      font-size: 16px;
       display: inline-block;
+
+      @media (max-width: $mobile-width) {
+        font-size: 20px;
+      }
     }
   }
 
@@ -49,5 +99,32 @@
     width: 100vw;
     height: 100vh;
     overflow: auto;
+  }
+
+  &-tools {
+    position: relative;
+    width: 100%;
+    height: 96%;
+    margin-top: 2%;
+  
+    .stats {
+      position: relative;
+      height: 30%;
+  
+      &-content {
+        position: relative;
+        height: 100%;
+      }
+    }
+  
+    .eruda-container {
+      position: relative;
+      margin-top: 12px;
+      height: calc(96% - 84px);
+    }
+  
+    .eruda-entry-btn {
+      display: none;
+    }
   }
 }

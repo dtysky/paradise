@@ -54,9 +54,9 @@ function createCover(name) {
   });
 }
 
-function create(name, tags, author, email) {
+function create(name, route, desc, tags, author, email) {
   const dirPath = path.resolve(collectionPath, name);
-  const cls = camelcase2Dash(name);
+  const cls = route;
   const date = (new Date()).toDateString();
   author = (author || email) ? `${author} (${email})` : '';
   tags = tags.split(',').map(tag => `'${tag}'`).join(', ')
@@ -68,6 +68,8 @@ function create(name, tags, author, email) {
       path.resolve(dirPath, template.name),
       template.template
         .replace(/\{NAME\}/g, name)
+        .replace(/\{ROUTE\}/g, route)
+        .replace(/\{DESC\}/g, desc)
         .replace(/\{DATE\}/g, date)
         .replace(/\{CLASS\}/g, cls)
         .replace(/\{AUTHOR\}/g, author)
@@ -97,7 +99,7 @@ const rl = readline.createInterface({
 
 rl.write('Set information for your effect:\n');
 
-rl.question('Name of your effects: ', name => {
+rl.question('Name of your effect: ', name => {
   if (!name) {
     error('Name can not be empty !');
   }
@@ -109,17 +111,20 @@ rl.question('Name of your effects: ', name => {
   if (!/^[A-Z].*/.test(name)) {
     error('Name must be camel case !');
   }
-
-  rl.question('Tags, a comma-separated list: ', tags => {
-    if (!/^[A-Za-z0-9]+[,A-Za-z0-9]*$/.test(tags)) {
-      error('Tags must be like "aaa,bbb,ccc" !');
+  
+  rl.question('Route of your effect: ', route => {
+    if (!/[a-z0-9\-]+/.test(route)) {
+      error('route can just contains "lower case", "number" and "-"!');
     }
 
-    rl.question(`Author: `, author => {
+    rl.question('Description of your effect: ', desc => {
 
-      rl.question(`Email: `, email => {
-        create(name, tags, author, email);
-
+      rl.question('Tags, a comma-separated list: ', tags => {
+        if (!/^[A-Za-z0-9]+[,A-Za-z0-9]*$/.test(tags)) {
+          error('Tags must be like "aaa,bbb,ccc" !');
+        }
+        create(name, route, desc, tags, author, email);
+    
         rl.close();
       });
     });

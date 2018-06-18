@@ -4,17 +4,19 @@
  * @Date   : 2018-4-4 17:01:25
  * @Link: dtysky.moe
  */
-import Component from './Component';
-import Controller from './Controller';
+import {TEffect} from '../../types';
+import {IControlOptions} from './types';
+
 const info = require('./readme.md');
 
-export default {
+const effect: TEffect<IControlOptions> = {
   name: 'RainbowStarWave',
+  path: 'rainbow-star-wave',
   desc: 'Rainbow star wave by pure css.',
   tags: ['CSS'],
   cover: require('./cover.jpg'),
-  info,
   date: '2018/04/09',
-  Component,
-  Controller
+  asyncModule: () => import('./asyncModule')
 };
+
+export default effect;

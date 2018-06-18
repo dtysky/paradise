@@ -1,6 +1,6 @@
 一个基于THREE和GSAP(Tween)实现的3D数字时钟。 
 这个也是以前见过的一个效果，觉得很不错就尝试做出来了。  
-[code](http://github.com/dtysky/paradise/tree/master/src/collection/DigitalClock3D),[demo](http://paradise.dtysky.moe/effect/digital-clock3d)  
+[code](http://github.com/dtysky/paradise/tree/master/src/collection/DigitalClock3D),[demo](http://paradise.dtysky.moe/effect/digital-clock-3d)  
 
 ## 原理
 

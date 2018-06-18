@@ -9,8 +9,6 @@ import {Link} from 'react-router-dom';
 import * as cx from 'classnames';
 import Icon from 'antd/es/icon';
 import 'antd/es/icon/style/css';
-import Button from 'antd/es/button';
-import 'antd/es/button/style/css';
 import Select from 'antd/es/select';
 import 'antd/es/select/style/css';
 
@@ -40,16 +38,14 @@ export default class Topbar extends React.PureComponent<{}, IStateTypes> {
           to={'/'}
         >
           <h1>Paradise</h1>
-          <p>Collection of amazing effects.</p>
         </Link>
         <div className={cx('pd-topbar-search')}>
           <Select
             mode={'tags'}
-            size={'large'}
             style={{width: '100%'}}
             onChange={this.handleSearchSelect}
             value={this.state.searchParams}
-            placeholder={'input tag or platform'}
+            placeholder={'input tags'}
           >
             {
               dataSource.map(({value, label}) => (
@@ -61,13 +57,9 @@ export default class Topbar extends React.PureComponent<{}, IStateTypes> {
           </Select>
           <Link
             to={`/tags?${this.state.searchParams.join('&')}`}
+            className={cx('pd-topbar-search-button')}
           >
-            <Button
-              size={'large'}
-              type={'primary'}
-            >
-              <Icon type={'search'} />
-            </Button>  
+            <Icon type={'search'} />
           </Link>
         </div>
       </header>

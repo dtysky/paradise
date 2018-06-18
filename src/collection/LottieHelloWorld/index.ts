@@ -4,17 +4,17 @@
  * @Date   : 2018-4-13 13:33:05
  * @Link: dtysky.moe
  */
-import Component from './Component';
-import Controller from './Controller';
-const info = require('./readme.md');
+import {TEffect} from '../../types';
+import {IControlOptions} from './types';
 
-export default {
+const effect: TEffect<IControlOptions> = {
   name: 'LottieHelloWorld',
+  path: 'lottie-hello-world',
   desc: 'A simple lottie demo.',
   tags: ['Lottie', 'SVG'],
   cover: require('./cover.jpg'),
-  info,
   date: '2018/04/13',
-  Component,
-  Controller
+  asyncModule: () => import('./asyncModule')
 };
+
+export default effect;

@@ -14,11 +14,19 @@ If you want to join this project and create your effect:
 4. Run `npm run dev`, open `localhost:8888` to develop.
 5. Push your branch and create a merge request to master.
 
->Note: If you have some static assets, please put them to `${proj-folder}/assets` folder.
-
 ## Current Effects
 
-[RainbowStarWave](paradise.dtysky.moe/rainbow-star-wave)  
-[TreesGenerator2D](paradise.dtysky.moe/trees-generator2d)  
-[DigitalClock3D](paradise.dtysky.moe/digital-clock3d)  
-[LottieHelloWorld](paradise.dtysky.moe/lottie-hello-world)  
+[RainbowStarWave](http://paradise.dtysky.moe/rainbow-star-wave)  
+![RainbowStarWave](src/collection/RainbowStarWave/cover.jpg)  
+
+[TreesGenerator2D](http://paradise.dtysky.moe/trees-generator-2d)  
+![TreesGenerator2D](src/collection/TreesGenerator2D/cover.jpg)   
+
+[DigitalClock3D](http://paradise.dtysky.moe/digital-clock-3d)  
+![DigitalClock3D](src/collection/DigitalClock3D/cover.jpg)  
+
+[LottieHelloWorld](http://paradise.dtysky.moe/lottie-hello-world)  
+![LottieHelloWorld](src/collection/LottieHelloWorld/cover.jpg)    
+
+[PixelDisplacement2D](http://paradise.dtysky.moe/pixel-displacement-2d)  
+![PixelDisplacement2D](src/collection/PixelDisplacement2D/cover.jpg)    

@@ -22,12 +22,12 @@ module.exports = {
       'webpack/hot/dev-server',
       path.resolve(__dirname, './src/index.tsx')
     ],
-    phaser: ['pixi', 'p2', 'phaser-ce']
   },
 
   output: {
     path: path.resolve(__dirname),
     filename: 'main.js',
+    chunkFilename: '[name].chunk.js',
     publicPath: '/'
   },
 
@@ -92,7 +92,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.md$/,
+        test: /\.(md|glsl)$/,
         use: [
           {
             loader: 'raw-loader'
@@ -123,10 +123,6 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       template: './index.html'
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'phaser',
-      filename: 'phaser.js'
     })
   ]
 };
