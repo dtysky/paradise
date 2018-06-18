@@ -2,9 +2,9 @@
 
 {DESC}  
 
-Code: [https://github.com/dtysky/paradise/tree/master/src/collection/{NAME}](http://github.com/dtysky/paradise/tree/master/src/collection/{NAME})  
+Code: [github.com/dtysky/paradise/tree/master/src/collection/{NAME}](http://github.com/dtysky/paradise/tree/master/src/collection/{NAME})  
 
-Demo: [http//:paradise.dtysky.com/{ROUTE}](paradise.alipay.net/{ROUTE})
+Demo: [paradise.dtysky.moe/{ROUTE}](http://paradise.dtysky.moe/{ROUTE})  
 
 ## 原理
 
