@@ -5,7 +5,9 @@
  * @Link: dtysky.moe
  */
 import * as React from 'react';
-import {Route, Switch, withRouter, RouteComponentProps} from 'react-router-dom';
+import {
+  Route, Switch, withRouter, RouteComponentProps, Redirect
+} from 'react-router-dom';
 
 import {effects} from './routes';
 import Topbar from './pages/Topbar';
@@ -59,7 +61,8 @@ class App extends React.Component<IPropTypes, {}> {
           ))
         }
         <Route path={'/tags'} component={Tags} />
-        <Route component={Home} />
+        <Route path={'/'} component={Home} />
+        <Route render={() => <Redirect to={'/'} />} />
       </Switch>
     );
   }
