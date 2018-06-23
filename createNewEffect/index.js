@@ -58,7 +58,7 @@ function create(name, route, desc, tags, author, email) {
   const dirPath = path.resolve(collectionPath, name);
   const cls = route;
   const date = (new Date()).toDateString();
-  author = (author || email) ? `${author} (${email})` : '';
+  author = (author && email) ? `${author} (${email})` : '';
   tags = tags.split(',').map(tag => `'${tag}'`).join(', ')
   
   fs.mkdirSync(dirPath);
@@ -123,7 +123,7 @@ rl.question('Name of your effect: ', name => {
         if (!/^[A-Za-z0-9]+[,A-Za-z0-9]*$/.test(tags)) {
           error('Tags must be like "aaa,bbb,ccc" !');
         }
-        create(name, route, desc, tags, author, email);
+        create(name, route, desc, tags);
     
         rl.close();
       });

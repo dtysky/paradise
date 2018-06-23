@@ -69,6 +69,8 @@
   },
   "dependencies": {
     "@types/classnames": "^2.2.4",
+    "@types/d3-ease": "^1.0.7",
+    "@types/d3-interpolate": "^1.2.0",
     "@types/gsap": "^1.19.2",
     "@types/qs": "^6.5.1",
     "@types/query-string": "^5.1.0",
@@ -81,6 +83,8 @@
     "babylonjs": "^3.2.0-beta.5",
     "classnames": "^2.2.6",
     "color-space": "^1.16.0",
+    "d3-ease": "^1.0.3",
+    "d3-interpolate": "^1.2.0",
     "eruda": "^1.4.4",
     "eruda-timing": "^1.1.1",
     "es6-object-assign": "^1.1.0",

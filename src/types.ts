@@ -1,6 +1,6 @@
 /**
  * @File   : types.ts
- * @Author : 瞬光 (shunguang.dty@antfin.com)
+ * @Author : dtysky (dtysky@outlook.com)
  * @Date   : 2018-6-16 14:46:15
  * @Description:
  */
