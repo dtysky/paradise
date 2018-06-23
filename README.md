@@ -30,3 +30,6 @@ If you want to join this project and create your effect:
 
 [PixelDisplacement2D](http://paradise.dtysky.moe/pixel-displacement-2d)  
 ![PixelDisplacement2D](src/collection/PixelDisplacement2D/cover.jpg)    
+
+[Particle3DByThree](http://paradise.dtysky.moe/particle-3d-by-three)  
+![Particle3DByThree](src/collection/Particle3DByThree/cover.jpg)    
