@@ -4,7 +4,7 @@ Some particles.
 
 Code: [https://github.com/dtysky/paradise/tree/master/src/collection/Particle3DByThree](http://github.com/dtysky/paradise/tree/master/src/collection/Particle3DByThree)  
 
-Demo: [http//:paradise.dtysky.com/particle-3d-by-three](paradise.alipay.net/particle-3d-by-three)
+Demo: [http://paradise.dtysky.moe/effect/particle-3d-by-three](http://paradise.dtysky.moe/effect/particle-3d-by-three)
 
 ## 原理
 
