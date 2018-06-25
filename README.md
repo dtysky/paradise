@@ -33,3 +33,6 @@ If you want to join this project and create your effect:
 
 [Particle3DByThree](http://paradise.dtysky.moe/particle-3d-by-three)  
 ![Particle3DByThree](src/collection/Particle3DByThree/cover.jpg)    
+
+[PanoramaImageViewer](http://paradise.dtysky.moe/panorama-image-viewer)  
+![PanoramaImageViewer](src/collection/PanoramaImageViewer/cover.jpg)    
