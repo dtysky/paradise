@@ -9,9 +9,14 @@ const fs = require('fs');
 const path = require('path');
 const readline = require('readline');
 const PImage = require('pureimage');
+const stringHash = require('string-hash');
+const colorSpace = require('color-space');
+const through = require('through2');
+const copy = require('recursive-copy');
 
-function camelcase2Dash(str) {
-  return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+function showError(msg) {
+  console.error('\x1b[31m%s', `Error: ${msg}`);
+  process.exit(0);
 }
 
 function getDirectories(dp) {
@@ -25,36 +30,26 @@ function getFiles(dp) {
 }
 
 const collectionPath = path.resolve(__dirname, '../src/collection');
-const collection = getDirectories(collectionPath)
-
+const collection = getDirectories(collectionPath);
 const templatesPath = path.resolve(__dirname, './templates');
-const templates = getFiles(templatesPath).map(fp => (
-  {
-    name: fp,
-    template: fs.readFileSync(path.resolve(templatesPath, fp), 'utf8')
-  }
-));
 
-function createCover(name) {
-  return new Promise((resolve, reject) => {
-    const fnt = PImage.registerFont(path.resolve(__dirname, 'prototype.ttf'), 'prototype');
+function stringAsHueToHSLToRGB(str, s, l, range = [0, 360]) {
+  const h = Math.round(stringHash(str) % (range[1] - range[0])) + range[0];
+  const color = colorSpace.hsl.rgb([h, s, l]).map(channel => Math.round(channel));
 
-    fnt.load(() => {
-      const image = PImage.make(400, 300);
-      const ctx = image.getContext('2d');
-      ctx.fillStyle = '#0bf';
-      ctx.fillRect(0, 0, 400, 300);
-      ctx.fillStyle = '#ffffff';
-      ctx.font = '38pt prototype';
-      const textWidth = name.length * 32;
-      ctx.fillText(name, (400 - textWidth) / 2, 160);
-
-      resolve(image);
-    });
-  });
+  return `rgb(${color.join(', ')})`;
 }
 
-function create(name, route, desc, tags, author, email) {
+function createCover(name) {
+  const image = PImage.make(400, 300);
+  const ctx = image.getContext('2d');
+  ctx.fillStyle = stringAsHueToHSLToRGB(name, 50, 60);
+  ctx.fillRect(0, 0, 400, 300);
+
+  return image;
+}
+
+async function create(name, route, desc, tags, author, email) {
   const dirPath = path.resolve(collectionPath, name);
   const cls = route;
   const date = (new Date()).toDateString();
@@ -63,33 +58,41 @@ function create(name, route, desc, tags, author, email) {
   
   fs.mkdirSync(dirPath);
 
-  templates.map(template => {
-    fs.writeFileSync(
-      path.resolve(dirPath, template.name),
-      template.template
-        .replace(/\{NAME\}/g, name)
-        .replace(/\{ROUTE\}/g, route)
-        .replace(/\{DESC\}/g, desc)
-        .replace(/\{DATE\}/g, date)
-        .replace(/\{CLASS\}/g, cls)
-        .replace(/\{AUTHOR\}/g, author)
-        .replace(/\{TAGS\}/g, tags)
-        .replace(/\{AUTHOR_NAME\}/g, author)
-        .replace(/\{AUTHOR_EMAIL\}/g, email)
-    );
-  });
+  const renderTemplate = (template) => template
+    .replace(/\{NAME\}/g, name)
+    .replace(/\{ROUTE\}/g, route)
+    .replace(/\{DESC\}/g, desc)
+    .replace(/\{DATE\}/g, date)
+    .replace(/\{CLASS\}/g, cls)
+    .replace(/\{AUTHOR\}/g, author)
+    .replace(/\{TAGS\}/g, tags)
+    .replace(/\{AUTHOR_NAME\}/g, author)
+    .replace(/\{AUTHOR_EMAIL\}/g, email);
 
-  createCover(name).then(image => {
-    PImage.encodeJPEGToStream(
-      image,
-      fs.createWriteStream(path.resolve(dirPath, 'cover.jpg'))
-    );
-  });
-}
+  const options = {
+    overwrite: true,
+    dot: true,
+    transform: (src, dest, stats) => {
+      return through((chunk, enc, done) =>  {
+        const output = renderTemplate(chunk.toString());
+        done(null, output);
+      });
+    }
+  };
 
-function error(msg) {
-  console.error('\x1b[31m%s', `Error: ${msg}`);
-  process.exit(0);
+  try {
+    await copy(templatesPath, dirPath, options)
+      .on(copy.events.COPY_FILE_START, copyOperation => {
+        console.log(`Generate ${copyOperation.dest}...`);
+      });
+  } catch (error) {
+    showError(`Generate failed: ${error}\nPlease clean current directory and retry !`);
+  }
+
+  PImage.encodeJPEGToStream(
+    createCover(name),
+    fs.createWriteStream(path.resolve(dirPath, 'cover.jpg'))
+  );
 }
 
 const rl = readline.createInterface({
@@ -101,27 +104,27 @@ rl.write('Set information for your effect:\n');
 
 rl.question('Name of your effect: ', name => {
   if (!name) {
-    error('Name can not be empty !');
+    showError('Name can not be empty !');
   }
 
   if (collection.includes(name)) {
-    error('Effect is existed, check folder "./src/collection" !');
+    showError('Effect is existed, check folder "./src/collection" !');
   }
 
   if (!/^[A-Z].*/.test(name)) {
-    error('Name must be camel case !');
+    showError('Name must be camel case !');
   }
   
   rl.question('Route of your effect: ', route => {
     if (!/[a-z0-9\-]+/.test(route)) {
-      error('route can just contains "lower case", "number" and "-"!');
+      showError('route can just contains "lower case", "number" and "-"!');
     }
 
     rl.question('Description of your effect: ', desc => {
 
       rl.question('Tags, a comma-separated list: ', tags => {
         if (!/^[A-Za-z0-9]+[,A-Za-z0-9]*$/.test(tags)) {
-          error('Tags must be like "aaa,bbb,ccc" !');
+          showError('Tags must be like "aaa,bbb,ccc" !');
         }
         create(name, route, desc, tags);
     

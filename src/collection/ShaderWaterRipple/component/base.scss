@@ -1,0 +1,31 @@
+/**
+ * @File   : base.scss
+ * @Author : dtysky (dtysky@outlook.com)
+ * @Date   : Sun Jul 01 2018
+ * @Link: dtysky.moe
+ */
+ html, body, #container {
+  width: 100%;
+  height: 100%;
+}
+
+.pd-shunguang-dty-shader-water-ripple {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(204, 102, 124);
+  overflow: hidden;
+  margin: 0;
+  cursor: pointer;
+
+  >p {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 48px;
+    font-size: 24px;
+    color: white;
+    background: rgba(rgb(60, 184, 136), .7);
+    padding: 8px 36px;
+  }
+}
