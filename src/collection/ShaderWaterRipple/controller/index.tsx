@@ -28,7 +28,7 @@ interface IStateTypes extends IControlOptions {
 export default class Controller extends React.PureComponent<IPropTypes, IStateTypes> {
   public state: IStateTypes = {
     defaultMap: 'wave',
-    image: 'assets/image.jpg',
+    image: require('../assets/image.jpg'),
     radius: .3,
     life: 2,
     band: .3,

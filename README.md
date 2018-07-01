@@ -36,3 +36,6 @@ If you want to join this project and create your effect:
 
 [PanoramaImageViewer](http://paradise.dtysky.moe/panorama-image-viewer)  
 ![PanoramaImageViewer](src/collection/PanoramaImageViewer/cover.jpg)    
+
+[ShaderWaterRipple](http://paradise.dtysky.moe/shader-water-ripple)  
+![ShaderWaterRipple](src/collection/ShaderWaterRipple/cover.jpg)    
