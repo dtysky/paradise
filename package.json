@@ -83,6 +83,7 @@
     "color-space": "^1.16.0",
     "d3-ease": "^1.0.3",
     "d3-interpolate": "^1.2.0",
+    "device-orientation-manager": "^0.8.0",
     "eruda": "^1.4.4",
     "eruda-timing": "^1.1.1",
     "es6-object-assign": "^1.1.0",

@@ -5,5 +5,5 @@
  * @Link: dtysky.moe
  */
 export interface IControlOptions {
-
+  image: string;
 }

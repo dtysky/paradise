@@ -23,7 +23,7 @@ interface IStateTypes extends IControlOptions {}
 
 export default class Controller extends React.PureComponent<IPropTypes, IStateTypes> {
   public state: IStateTypes = {
-    image: 'assets/aurora.jpg'
+    image: require('../assets/aurora.jpg')
   };
 
   public componentDidMount() {

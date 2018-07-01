@@ -6,10 +6,10 @@
  */
 import * as React from 'react';
 import * as cx from 'classnames';
-import * as Hilo3d from 'hilo3d';
+import * as THREE from 'three';
 
 import {IControlOptions} from '../types';
-import DeviceOrientationManager from './DeviceOrientationManager';
+import DeviceOrientationManager from 'device-orientation-manager';
 import './base.scss';
 
 interface IStateTypes {
@@ -21,10 +21,10 @@ interface IStateTypes {
 
 const doManager: DeviceOrientationManager = new DeviceOrientationManager();
 
-const zee = new Hilo3d.Vector3(0, 0, 1);
-const q0 = new Hilo3d.Quaternion();
-const q1 = new Hilo3d.Quaternion().rotateX(-Math.PI * 80 / 180);
-const euler = new Hilo3d.Euler();
+const zee = new THREE.Vector3(0, 0, 1);
+const screenTransform = new THREE.Quaternion();
+const worldTransform = new THREE.Quaternion(-Math.sqrt(0.5), 0, 0, Math.sqrt(0.5));
+const euler = new THREE.Euler();
 euler.order = doManager.current.order;
 
 export default class Component extends React.Component<IControlOptions, IStateTypes> {
@@ -34,36 +34,34 @@ export default class Component extends React.Component<IControlOptions, IStateTy
     roll: 0,
     orientation: 0
   };
-  private container: React.RefObject<HTMLDivElement> = React.createRef();
-  private camera: Hilo3d.PerspectiveCamera;
-  private stage: Hilo3d.Stage;
-  private mesh: Hilo3d.Mesh;
+  private container: React.RefObject<HTMLCanvasElement> = React.createRef();
+  private renderer: THREE.WebGLRenderer;
+  private camera: THREE.PerspectiveCamera;
+  private scene: THREE.Scene;
+  private mesh: THREE.Mesh;
 
   public async componentDidMount() {
-    const camera = this.camera = new Hilo3d.PerspectiveCamera({
-      aspect: window.innerWidth / window.innerHeight,
-      far: 1000,
-      near: .1,
-      fov: 80
+    this.renderer = new THREE.WebGLRenderer({
+      antialias: true,
+      canvas: this.container.current
     });
 
-    const stage = this.stage = new Hilo3d.Stage({
-      container: this.container.current,
-      camera: camera,
-      clearColor: new Hilo3d.Color(.4, .4, .4),
-      width: window.innerWidth,
-      height: window.innerHeight
-    });
+    this.camera = new THREE.PerspectiveCamera(
+      80,
+      window.innerWidth / window.innerHeight,
+      1000,
+      .1
+    );
 
-    const ticker = new Hilo3d.Ticker(60);
-    ticker.addTick(stage);
-    ticker.addTick(Hilo3d.Tween);
-    ticker.addTick(Hilo3d.Animation);
-    ticker.start();
+    const scene = this.scene = new THREE.Scene();
+    scene.background = new THREE.Color(.4, .4, .4);
 
     this.initDo();
 
     window.addEventListener('resize', this.handleResize);
+    this.handleResize();
+
+    this.run();
   }
 
   public componentWillReceiveProps(nextProps: IControlOptions) {
@@ -83,48 +81,48 @@ export default class Component extends React.Component<IControlOptions, IStateTy
       });
 
       euler.set(pitch, yaw, roll, order);
-      this.camera.quaternion.fromEuler(euler);
-      this.camera.quaternion.multiply(q1);
-      this.camera.quaternion.multiply(q0.setAxisAngle(zee, -orientation));
+      this.camera.quaternion.setFromEuler(euler);
+      this.camera.quaternion.multiply(worldTransform);
+      this.camera.quaternion.multiply(screenTransform.setFromAxisAngle(zee, -orientation));
     });
     doManager.start();
   }
 
   private async initMesh(src: string) {
     if (this.mesh) {
-      this.mesh.removeFromParent();
+      this.scene.remove(this.mesh);
     }
 
-    const loader = new Hilo3d.TextureLoader();
-    const skybox = await loader.load({crossOrigin: true, src});
+    const loader = new THREE.TextureLoader();
+    const skybox = await loader.load(src);
 
-    const geometry = new Hilo3d.SphereGeometry({
-      radius: 4,
-      widthSegments: 64,
-      heightSegments: 32
+    const geometry = new THREE.SphereGeometry(4, 64, 32);
+    const material = new THREE.MeshBasicMaterial({
+      map: skybox,
+      side: THREE.BackSide
     });
-    const material = new Hilo3d.BasicMaterial({
-      diffuse: skybox,
-      lightType: 'NONE',
-      side: Hilo3d.constants.BACK
-    });
-    const mesh = this.mesh = new Hilo3d.Mesh({geometry, material});
-    this.stage.addChild(mesh);
+    const mesh = this.mesh = new THREE.Mesh(geometry, material);
+    this.scene.add(mesh);
   }
 
   private handleResize = () => {
     const {innerWidth: width, innerHeight: height} = window;
 
     this.camera.aspect = width / height;
-    this.stage.resize(width, height);
+    this.camera.updateProjectionMatrix();
+    this.renderer.setPixelRatio(window.devicePixelRatio);
+    this.renderer.setSize(width, height);
+  }
+
+  private run = () => {
+    this.renderer.render(this.scene, this.camera);
+    requestAnimationFrame(this.run);
   }
 
   public render() {
     return (
-      <div
-        className={cx('pd-shunguang-dty-device-orientation')}
-        ref={this.container}
-      >
+      <div className={cx('pd-shunguang-dty-device-orientation')}>
+        <canvas ref={this.container} />
         <div className={cx('pd-shunguang-dty-device-orientation-info')}>
           <p>yaw: {this.state.yaw.toFixed(4)}</p>
           <p>pitch: {this.state.pitch.toFixed(4)}</p>

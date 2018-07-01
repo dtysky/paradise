@@ -11,6 +11,7 @@ import LottieHelloWorld from './LottieHelloWorld';
 import PixelDisplacement2D from './PixelDisplacement2D';
 import Particle3DByThree from './Particle3DByThree';
 import ShaderWaterRipple from './ShaderWaterRipple';
+import PanoramaImageViewer from './PanoramaImageViewer';
 
 const config = [
   RainbowStarWave,
@@ -19,7 +20,8 @@ const config = [
   LottieHelloWorld,
   PixelDisplacement2D,
   Particle3DByThree,
-  ShaderWaterRipple
+  ShaderWaterRipple,
+  PanoramaImageViewer
 ];
 
 export default config;
