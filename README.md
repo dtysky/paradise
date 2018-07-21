@@ -39,3 +39,6 @@ If you want to join this project and create your effect:
 
 [ShaderWaterRipple](http://paradise.dtysky.moe/shader-water-ripple)  
 ![ShaderWaterRipple](src/collection/ShaderWaterRipple/cover.jpg)    
+
+[ImageFragmentTransition](http://paradise.dtysky.moe/image-fragment-transition)  
+![ImageFragmentTransition](src/collection/ImageFragmentTransition/cover.jpg)    
