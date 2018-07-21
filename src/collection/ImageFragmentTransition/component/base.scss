@@ -1,0 +1,23 @@
+/**
+ * @File   : base.scss
+ * @Author : dtysky (dtysky@outlook.com)
+ * @Date   : Sat Jul 21 2018
+ * @Link: dtysky.moe
+ */
+ html, body, #container {
+  width: 100%;
+  height: 100%;
+}
+
+.pd-image-fragment-transition {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(102, 204, 189);
+  overflow: hidden;
+  margin: 0;
+
+  >canvas {
+    position: relative;
+  }
+}

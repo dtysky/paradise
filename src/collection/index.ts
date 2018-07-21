@@ -12,6 +12,7 @@ import PixelDisplacement2D from './PixelDisplacement2D';
 import Particle3DByThree from './Particle3DByThree';
 import ShaderWaterRipple from './ShaderWaterRipple';
 import PanoramaImageViewer from './PanoramaImageViewer';
+import ImageFragmentTransition from './ImageFragmentTransition';
 
 const config = [
   RainbowStarWave,
@@ -21,7 +22,8 @@ const config = [
   PixelDisplacement2D,
   Particle3DByThree,
   ShaderWaterRipple,
-  PanoramaImageViewer
+  PanoramaImageViewer,
+  ImageFragmentTransition
 ];
 
 export default config;
