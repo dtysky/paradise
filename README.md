@@ -16,29 +16,29 @@ If you want to join this project and create your effect:
 
 ## Current Effects
 
-[RainbowStarWave](http://paradise.dtysky.moe/rainbow-star-wave)  
+[RainbowStarWave](http://paradise.dtysky.moe/effect/rainbow-star-wave)  
 ![RainbowStarWave](src/collection/RainbowStarWave/cover.jpg)  
 
-[TreesGenerator2D](http://paradise.dtysky.moe/trees-generator-2d)  
+[TreesGenerator2D](http://paradise.dtysky.moe/effect/trees-generator-2d)  
 ![TreesGenerator2D](src/collection/TreesGenerator2D/cover.jpg)   
 
-[DigitalClock3D](http://paradise.dtysky.moe/digital-clock-3d)  
+[DigitalClock3D](http://paradise.dtysky.moe/effect/digital-clock-3d)  
 ![DigitalClock3D](src/collection/DigitalClock3D/cover.jpg)  
 
-[LottieHelloWorld](http://paradise.dtysky.moe/lottie-hello-world)  
+[LottieHelloWorld](http://paradise.dtysky.moe/effect/lottie-hello-world)  
 ![LottieHelloWorld](src/collection/LottieHelloWorld/cover.jpg)    
 
-[PixelDisplacement2D](http://paradise.dtysky.moe/pixel-displacement-2d)  
+[PixelDisplacement2D](http://paradise.dtysky.moe/effect/pixel-displacement-2d)  
 ![PixelDisplacement2D](src/collection/PixelDisplacement2D/cover.jpg)    
 
-[Particle3DByThree](http://paradise.dtysky.moe/particle-3d-by-three)  
+[Particle3DByThree](http://paradise.dtysky.moe/effect/particle-3d-by-three)  
 ![Particle3DByThree](src/collection/Particle3DByThree/cover.jpg)    
 
-[PanoramaImageViewer](http://paradise.dtysky.moe/panorama-image-viewer)  
+[PanoramaImageViewer](http://paradise.dtysky.moe/effect/panorama-image-viewer)  
 ![PanoramaImageViewer](src/collection/PanoramaImageViewer/cover.jpg)    
 
-[ShaderWaterRipple](http://paradise.dtysky.moe/shader-water-ripple)  
+[ShaderWaterRipple](http://paradise.dtysky.moe/effect/shader-water-ripple)  
 ![ShaderWaterRipple](src/collection/ShaderWaterRipple/cover.jpg)    
 
-[ImageFragmentTransition](http://paradise.dtysky.moe/image-fragment-transition)  
+[ImageFragmentTransition](http://paradise.dtysky.moe/effect/image-fragment-transition)  
 ![ImageFragmentTransition](src/collection/ImageFragmentTransition/cover.jpg)    
