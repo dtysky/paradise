@@ -13,6 +13,7 @@ import Particle3DByThree from './Particle3DByThree';
 import ShaderWaterRipple from './ShaderWaterRipple';
 import PanoramaImageViewer from './PanoramaImageViewer';
 import ImageFragmentTransition from './ImageFragmentTransition';
+import RimLightFresnel from './RimLightFresnel';
 
 const config = [
   RainbowStarWave,
@@ -23,7 +24,8 @@ const config = [
   Particle3DByThree,
   ShaderWaterRipple,
   PanoramaImageViewer,
-  ImageFragmentTransition
+  ImageFragmentTransition,
+  RimLightFresnel
 ];
 
 export default config;
