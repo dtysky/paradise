@@ -101,6 +101,7 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|gif|svg|mp4)$/,
+        exclude: /gltf/,
         use: {
           loader: 'url-loader',
           query: {
@@ -115,7 +116,28 @@ module.exports = {
         use: {
           loader: 'json-loader'
         }
+      },
+      // GLTF configuration: add this to rules
+      {
+        // match all .gltf files
+        test: /\.gltf$/,
+        use: {
+          loader: 'gltf-loader-2'
+        }
+      },
+      {
+        // here I match only IMAGE and BIN files under the gltf folder
+        test: /gltf.*\.(bin|png|jpe?g|gif)$/,
+        // or use url-loader if you would like to embed images in the source gltf
+        use: {
+          loader: 'file-loader',
+          options: {
+            // output folder for bin and image files, configure as needed
+            name: 'gltf/[name].[hash].[ext]'
+          }
+        }
       }
+      // end GLTF configuration
     ]
   },
 

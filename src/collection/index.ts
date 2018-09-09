@@ -14,6 +14,8 @@ import ShaderWaterRipple from './ShaderWaterRipple';
 import PanoramaImageViewer from './PanoramaImageViewer';
 import ImageFragmentTransition from './ImageFragmentTransition';
 import RimLightFresnel from './RimLightFresnel';
+import GlobalBloom from './GlobalBloom';
+import GlowEmissiveMap from './GlowEmissiveMap';
 
 const config = [
   RainbowStarWave,
@@ -25,7 +27,9 @@ const config = [
   ShaderWaterRipple,
   PanoramaImageViewer,
   ImageFragmentTransition,
-  RimLightFresnel
+  RimLightFresnel,
+  GlobalBloom,
+  GlowEmissiveMap
 ];
 
 export default config;
