@@ -4,9 +4,6 @@
  * @Date   : Sun Sep 09 2018
  * @Link: dtysky.moe
  */
-import * as THREE from 'three';
-(window as any).THREE = THREE;
-
 import {TEffect} from '../../types';
 import {IControlOptions} from './types';
 
@@ -17,7 +14,12 @@ const effect: TEffect<IControlOptions> = {
   tags: ['Bloom', 'Glow', 'PostProcessing', 'ImageProcessing', 'Emissive'],
   cover: require('./cover.jpg'),
   date: 'Sun Sep 09 2018',
-  asyncModule: () => import('./asyncModule')
+  asyncModule: async () => {
+    const THREE = await import('three');
+    (window as any).THREE = THREE;
+
+    return import('./asyncModule')
+  }
 };
 
 export default effect;
