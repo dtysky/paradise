@@ -133,7 +133,7 @@ module.exports = {
           loader: 'file-loader',
           options: {
             // output folder for bin and image files, configure as needed
-            name: 'gltf/[name].[hash].[ext]'
+            name: 'assets/gltf/[name].[hash].[ext]'
           }
         }
       }
